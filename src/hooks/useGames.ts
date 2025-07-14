@@ -8,6 +8,8 @@ export interface Game {
   background_image: string;
   platforms:{platform:Platform}[];
   metacritic: number;
+  rating_top: number;
+
 }
 
 const useGames=(gameQuery:GameQuery)=> useData<Game>('/games',
