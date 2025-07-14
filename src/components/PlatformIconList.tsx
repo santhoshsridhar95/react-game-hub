@@ -1,17 +1,17 @@
+import type { Platform } from "@/hooks/usePlatforms";
+import { Icon, Wrap, WrapItem } from "@chakra-ui/react";
+import type { IconType } from "react-icons";
+import { BsGlobe } from "react-icons/bs";
 import {
-  FaPlaystation,
-  FaXbox,
-  FaWindows,
-  FaLinux,
   FaAndroid,
   FaApple,
+  FaLinux,
+  FaPlaystation,
+  FaWindows,
+  FaXbox,
 } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
-import { BsGlobe } from "react-icons/bs";
-import { HStack, Icon } from "@chakra-ui/react";
-import type { IconType } from "react-icons";
-import type { Platform } from "@/hooks/usePlatforms";
 
 interface Props {
   platforms: Platform[];
@@ -20,31 +20,34 @@ interface Props {
 const PlatformIconList = ({ platforms }: Props) => {
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
-    playstation3: FaPlaystation,
-    playstation4: FaPlaystation,
-    playstation5: FaPlaystation,
-    xbox360: FaXbox,
-    "xbox-one": FaXbox,
-    "xbox-series-x": FaXbox,
-    "nintendo-switch": SiNintendo,
-    macos: FaApple,
+    playstation: FaPlaystation,
+    // playstation4: FaPlaystation,
+    // playstation5: FaPlaystation,
+    xbox: FaXbox,
+    // "xbox-one": FaXbox,
+    // "xbox-series-x": FaXbox,
+    nintendo: SiNintendo,
+    mac: FaApple,
     linux: FaLinux,
     android: FaAndroid,
     ios: MdPhoneIphone,
     web: BsGlobe,
   };
   return (
-    <>
-      <HStack marginY="10px">
-        {platforms.map((platform) => (
-          <Icon
-            key={platform.id}
-            as={iconMap[platform.slug]}
-            color="gray.500"
-          ></Icon>
-        ))}
-      </HStack>
-    </>
+    <Wrap marginY="10px" spacing="10px">
+      {platforms.map((platform) => (
+        <>
+          <WrapItem key={platform.id}>
+            <Icon
+              key={platform.id}
+              as={iconMap[platform.slug]}
+              color="gray.500"
+              boxSize="20px"
+            ></Icon>
+          </WrapItem>
+        </>
+      ))}
+    </Wrap>
   );
 };
 
